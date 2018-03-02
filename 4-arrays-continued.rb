@@ -1,3 +1,5 @@
+require 'terminal-table'
+
 subscribers = [
   { first_name: 'Gail', last_name: 'Carmichael', email: 'gc@shopify.com' },
   { first_name: 'Steve', last_name: 'Wozniak', email: 'woz@apple.com' },
@@ -52,4 +54,14 @@ puts subscribers.inspect
 
 # subscribers.each { |name| puts name.ljust(10) }
 
-puts subscribers.rjust(20, "!")
+# puts subscribers[0][:first_name].rjust(20, "!")
+
+rows = []
+rows << ["#{subscribers[0][:first_name]}", "#{subscribers[0][:email]}"]
+rows << ["#{subscribers[1][:first_name]}", "#{subscribers[1][:email]}"]
+rows << ["#{subscribers[2][:first_name]}", "#{subscribers[2][:email]}"]
+rows << ["#{subscribers[3][:first_name]}", "#{subscribers[3][:email]}"]
+table = Terminal::Table.new :rows => rows
+table = Terminal::Table.new :title => "Subscribers", :headings => ['Name', 'Email'], :rows => rows
+
+puts table
